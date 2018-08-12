@@ -1,2 +1,25 @@
-# FileSafe
-FileSafe is a program for protecting the confidentiality and integrity of any arbitrary file
+### TlsProtocol
+Sample implementation of TLS
+
+
+## Building
+
+~~~
+mkdir build
+cd build
+cmake ..
+make
+~~~
+
+## Running
+
+~~~
+cd build && make test
+~~~
+
+or
+
+~~~
+build/test/testfoo/testfoo
+~~~
+
