@@ -1,16 +1,24 @@
 #include "gtest/gtest.h"
-#include "mockbar.h"
+#include "threadsafequeue.h"
 
-// The fixture for testing class Foo.
-class FooTest : public ::testing::Test {
+
+
+
+class JobTest
+{
+public:
+    size_t m_test;
+};
+
+class ThreadSafeQueueTest : public ::testing::Test {
 
 protected:
 
     // You can do set-up work for each test here.
-    FooTest();
+    ThreadSafeQueueTest();
 
     // You can do clean-up work that doesn't throw exceptions here.
-    virtual ~FooTest();
+    virtual ~ThreadSafeQueueTest();
 
     // If the constructor and destructor are not enough for setting up
     // and cleaning up each test, you can define the following methods:
@@ -23,6 +31,13 @@ protected:
     // before the destructor).
     virtual void TearDown();
 
-    // The mock bar library shaed by all tests
-    MockBar m_bar;
+public:
+    static void Schedule(
+        filesafe::ThreadSafeQueue<JobTest>* pTsq
+    );
+
+    static void ScheduleDelayedExec(
+        filesafe::ThreadSafeQueue<JobTest>* pTsq
+    );
 };
+

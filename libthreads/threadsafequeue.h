@@ -5,6 +5,7 @@
 #include <mutex>
 #include <atomic>
 #include <condition_variable>
+#include <thread>
 
 namespace filesafe
 {
@@ -16,14 +17,6 @@ namespace filesafe
         {
             m_isValid = true;
         }
-
-        ThreadSafeQueue(
-            ThreadSafeQueue&
-        )   =   delete;
-
-        ThreadSafeQueue& operator=(
-            ThreadSafeQueue&
-        ) = delete;
 
         bool Enqueue(
             T job
@@ -67,15 +60,15 @@ namespace filesafe
             return true;
         }                                               //  release lock
 
-        bool IsEmpty() const
+        bool IsEmpty()
         {
-            std::unique_lock<std::mutex> lock(m_qLock);     //  acquire lock
+            std::lock_guard<std::mutex> lock{m_qLock};     //  acquire lock
             return m_q.empty();
         }                                                   //  release lock
 
-        size_t Count() const
+        size_t Count()
         {
-            std::unique_lock<std::mutex> lock(m_qLock);     //  acquire lock
+            std::lock_guard<std::mutex> lock{m_qLock};     //  acquire lock
             return m_q.size();                              
         }                                                   //  release lock
 
@@ -86,14 +79,19 @@ namespace filesafe
             m_cndReleaseJob.notify_all();
         }
 
+        static const size_t MAX_QUEUE_ITEMS = 1024;
     private:
         std::queue<T> m_q;
         std::mutex m_qLock;
         std::condition_variable m_cndAcquireJob; 
         std::condition_variable m_cndReleaseJob;
         std::atomic_bool m_isValid;
-        static constexpr size_t MAX_QUEUE_ITEMS = 1024;
+        
     };
+
+
+
 }
+
 
 #endif  //  _THREAD_SAFE_QUEUE_H_
