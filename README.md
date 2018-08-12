@@ -1,5 +1,5 @@
-### TlsProtocol
-Sample implementation of TLS
+### FileSafe
+Program for protecting confidentiality and integrity of any arbitrary file
 
 
 ## Building
