@@ -6,16 +6,11 @@
 
 // using ::testing::Return;
 
-ThreadSafeQueueTest::ThreadSafeQueueTest() 
-{
-};
+ThreadSafeQueueTest::ThreadSafeQueueTest() {};
 
 ThreadSafeQueueTest::~ThreadSafeQueueTest() {};
 
-void ThreadSafeQueueTest::SetUp() 
-{
-    
-}
+void ThreadSafeQueueTest::SetUp() {};
 
 void ThreadSafeQueueTest::TearDown() {};
 
