@@ -1,4 +1,5 @@
 #include "hmacprovider.h"
+#include <stdexcept>
 
 namespace filesafe
 {

@@ -1,4 +1,5 @@
 #include "cryptoalgorithms.h"
+#include <openssl/evp.h>
 
 namespace filesafe
 {

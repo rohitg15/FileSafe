@@ -2,6 +2,7 @@
 #define _LIBCRYPTO_ALGORITHMS_H_
 
 #include <openssl/evp.h>
+#include <stdint.h>
 
 namespace filesafe
 {

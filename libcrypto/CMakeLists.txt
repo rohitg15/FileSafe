@@ -5,14 +5,20 @@ set(libcrypto_SRCS
     hmacprovider.cpp
 )
 
-include_directories("/usr/local/opt/openssl/include")
+# include_directories("/usr/local/opt/openssl/include")
+
+
+find_package(OpenSSL)
+
+set(OPENSSL_CRYPTO_LIBRARY "/usr/lib/x86_64-linux-gnu")
+
+link_libraries("-lcrypto")
 
 # Declare the library
 add_library(libcrypto STATIC
     ${libcrypto_SRCS}
 )
 
-link_libraries("-lcrypto")
 
 # Specify here the include directories exported
 # by this library
